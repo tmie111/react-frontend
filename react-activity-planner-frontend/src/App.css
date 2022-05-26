@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+  background-color: #e8f4ea;
+  font-family: "Lucida Sans Typewriter", monaco, monospace; 
+}
+
+.menu {
+  background-color: #d2e7d6;
+  padding: 15px;
+}
+
+a:-webkit-any-link{
+  font-family: "Lucida Sans Typewriter", monaco, monospace; 
+  margin: 10px;
+}
+
+.addActivity{
+  background-color: #baccbf;
+}
+
+.card.activity, .card.add, .card.home, .card.login, .card.register{
+  background-color: #c8e1cc;
+  margin: 15px;
+  padding: 10px;
+  width: 80%;
+  display: inline-block;
+}
+
+.card.title {
+  font-family: "Lucida Sans Typewriter", monaco, monospace; 
+  font-size: 20px; 
+  font-weight: 700; 
+}
+
+.card.body{
+  font-family: "Lucida Sans Typewriter", monaco, monospace; 
+  font-size: 16px; 
+  font-weight: 300; 
+  font-style: italic;
+}
+
+.btn.completed, 
+.btn.add, 
+.btn.delete, 
+.btn.login, 
+.btn.register{
+  background-color: #d2e7d6;
+  margin: 5px;
+  color: grey;
+}
+
+.btn.completed:hover, 
+.btn.add:hover, 
+.btn.delete:hover, 
+.btn.login:hover, 
+.btn.register:hover{
+background-color: #e0f0e3
+}
