@@ -28,26 +28,38 @@ app.get('/activities', (req, res) => {
 app.get('/activities/:userID', (req, res) => {
     let userID = parseInt(req.params.userID);
 
+    if(typeof userID !== 'number'){
+        res.json({});
+        return
+    }
+    
     models.Activity.findAll({
         where: {
             user_id: userID
-        }
+        }, order: [["favorite", "DESC"], ["due_date", "ASC"]]
     }).then((activities) => {
         res.json(activities);
     })
 })
 
+// app.get('/dates/:activityID', (req, res) => {
+//     let activityID = parseInt(req.params.activityID);
+
+//     models.Activity
+// })
+
 app.post('/activities', (req, res) => {
-    let { user_id, title, body } = req.body;
+    let { user_id, title, body, due_date } = req.body;
 
     models.Activity.create({
         user_id: user_id,
         title: title,
-        body: body
+        body: body,
+        due_date: due_date
+
     }).then(result => {
         res.json(result)
     })
-
 })
 
 app.post('/login', (req, res) => {
@@ -76,18 +88,28 @@ app.post('/register', (req, res) => {
 
     let { username, email, password } = req.body;
 
-    bcrypt.hash(password, 10, (err, hash) => {
-        models.User.create({
-            username: username,
-            email: email,
-            password: hash,
-        })
-            .catch(err => { "error found: ", err })
-            .then((result) => {
-                res.json({ success: true });
+    models.User.findOne({
+        where: { username: username }
+    }).then((user) => {
+        if (user) {
+            res.json({ error: 'username already exists' })
+            return;
+        }
+
+        bcrypt.hash(password, 10, (err, hash) => {
+            models.User.create({
+                username: username,
+                email: email,
+                password: hash,
             })
-    });
+                .catch(err => { "error found: ", err })
+                .then((result) => {
+                    res.json({ success: true });
+                })
+        });
+    })
 })
+
 
 //mark activity as completed
 app.patch('/activities/:id', (req, res) => {
@@ -101,14 +123,27 @@ app.patch('/activities/:id', (req, res) => {
         })
 })
 
+app.patch('/favorites/:id', (req, res) => {
+    let activityID = parseInt(req.params.id);
+    let favorite = req.body.favorite;
+
+    console.log(activityID);
+    console.log('here');
+
+    models.Activity.update({ favorite: favorite }, { where: { id: activityID } })
+        .then(result => {
+            console.log(result);
+            return res.json(result)
+        })
+})
+
 app.delete('/activities/:id', (req, res) => {
     let activityID = parseInt(req.params.id);
 
-    models.Activity.destroy({where: {id: activityID}})
-    .then(result => {
-        return res.json(result);
-    })
-
+    models.Activity.destroy({ where: { id: activityID } })
+        .then(result => {
+            return res.json(result);
+        })
 })
 
 app.listen(3001, function () {

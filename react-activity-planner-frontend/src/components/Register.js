@@ -24,10 +24,14 @@ const Register = (props) => {
             },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
-            props.setUserID(data.user_id);
-
+            console.log(data.error);
+            if(data.error){
+                alert(data.error);
+            }else{
+                props.setUserID(data.user_id);
+                navigate("/login");
+            }   
         })
-        navigate("/login");
     }
 
     return (

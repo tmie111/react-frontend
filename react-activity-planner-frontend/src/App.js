@@ -1,5 +1,7 @@
 import './App.css';
 import ActivityPage from './components/ActivityPage';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Login from './components/Login';
 import Home from './components/Home';
 import Logout from './components/Logout';
@@ -15,10 +17,12 @@ import {
 function App() {
 
   const [userID, setUserID] = useState(null);
+  const[date, setDate] = useState('');
 
 
   return (
     <div className="App">
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
 
       <div className="menu">
         <Link to="/">Home</Link>
@@ -41,8 +45,9 @@ function App() {
           <Route path="/logout" element={<Logout userID={userID} setUserID={setUserID} />} />
         </Routes>
       </div>
+      </LocalizationProvider>
     </div>
-
+   
   );
 }
 

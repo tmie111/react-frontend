@@ -22,8 +22,13 @@ const Login = (props) => {
             },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
-            props.setUserID(data.user_id);
-            navigate("/activities")
+            if(data.user_id){
+                props.setUserID(data.user_id);
+                navigate("/activities")
+            }else{
+                alert(data.error)
+            }
+            
         })
     }
 

@@ -22,8 +22,16 @@ a:-webkit-any-link{
   background-color: #c8e1cc;
   margin: 15px;
   padding: 10px;
-  width: 80%;
+  width: 60%;
   display: inline-block;
+}
+
+.card.activity.yellow{
+  background-color: #FFDF82
+}
+
+.card.activity.red{
+  background-color: #FAA69F
 }
 
 .card.title {
@@ -55,4 +63,14 @@ a:-webkit-any-link{
 .btn.login:hover, 
 .btn.register:hover{
 background-color: #e0f0e3
+}
+
+.date.picker{
+  padding: 7px;
+}
+.add.activity.input{
+  padding: 3px;
+}
+.css-i4bv87-MuiSvgIcon-root{
+  display: flex;
 }

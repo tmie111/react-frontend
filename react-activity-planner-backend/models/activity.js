@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
     body: DataTypes.STRING,
-    completed: DataTypes.BOOLEAN
+    completed: DataTypes.BOOLEAN,
+    favorite: DataTypes.BOOLEAN,
+    due_date: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Activity',
