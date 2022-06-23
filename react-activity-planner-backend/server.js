@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const models = require('./models');
 const session = require('express-session');
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -146,6 +147,6 @@ app.delete('/activities/:id', (req, res) => {
         })
 })
 
-app.listen(3001, function () {
+app.listen(PORT, function () {
     console.log('App is now listening on port 3001...');
 });
