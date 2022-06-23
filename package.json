@@ -1,0 +1,20 @@
+{
+  "name": "react-activity-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./react-activity-planner-backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmie111/react-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmie111/react-frontend/issues"
+  },
+  "homepage": "https://github.com/tmie111/react-frontend#readme"
+}
