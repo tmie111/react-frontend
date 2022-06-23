@@ -26,12 +26,29 @@ a:-webkit-any-link{
   display: inline-block;
 }
 
-.card.activity.yellow{
+.card.activity.yellow
+{
   background-color: #FFDF82
 }
 
-.card.activity.red{
+.btn.completed.yellow,
+.btn.delete.yellow{
+ background-color: #ffecb4
+}
+
+.card.activity.red
+{
   background-color: #FAA69F
+}
+
+.btn.completed.red,
+.btn.delete.red{
+  background-color: #fccac5;
+}
+
+
+.card.activity.green{
+  background-color: #c8e1cc
 }
 
 .card.title {
@@ -56,6 +73,7 @@ a:-webkit-any-link{
   margin: 5px;
   color: grey;
 }
+
 
 .btn.completed:hover, 
 .btn.add:hover, 

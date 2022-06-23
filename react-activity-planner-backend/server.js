@@ -36,7 +36,7 @@ app.get('/activities/:userID', (req, res) => {
     models.Activity.findAll({
         where: {
             user_id: userID
-        }, order: [["favorite", "DESC"], ["due_date", "ASC"]]
+        }, order: [["completed", "ASC"], ["favorite", "DESC"], ["due_date", "ASC"]]
     }).then((activities) => {
         res.json(activities);
     })
@@ -114,9 +114,9 @@ app.post('/register', (req, res) => {
 //mark activity as completed
 app.patch('/activities/:id', (req, res) => {
     let activityID = parseInt(req.params.id);
-    console.log(activityID);
+    let complete = req.body.completed;
 
-    models.Activity.update({ completed: true }, { where: { id: activityID } })
+    models.Activity.update({ completed: complete }, { where: { id: activityID } })
         .then(result => {
             console.log(result);
             return res.json(result)

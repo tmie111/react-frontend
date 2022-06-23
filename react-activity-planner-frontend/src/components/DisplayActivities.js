@@ -18,21 +18,25 @@ const DisplayActivities = (props) => {
 
     const handleComplete = (e) => {
 
-        fetch(`http://localhost:3001/activities/${e.target.dataset.activityid}`, {
+        getActivityColor('complete');
+
+        fetch(`http://localhost:3001/activities/${e.currentTarget.getAttribute("data-activityid")}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify({
-                completed: true
+                completed: e.currentTarget.getAttribute("data-completed") === "false"
             })
         }).then(res => {
             console.log(res.status);
             return res.json();
         })
             .then(data =>{ 
-                // console.log(data)
+                
                 props.setActivities([]);
             })
+
+       
             
       
     }
@@ -68,14 +72,18 @@ const DisplayActivities = (props) => {
             return res.json();
         })
             .then(data =>{ 
-                // console.log(data)
                props.setActivities([]);
             })
     }
 
-    const getActivityColor = (date) => {
+    const getActivityColor = (date, completed) => {
+        console.log(date);
 
         if(!date){
+            return ""
+        }
+
+        if(completed === true){
             return ""
         }
 
@@ -100,7 +108,7 @@ const DisplayActivities = (props) => {
             {activities.map((activity, index) => {
                 console.log(activity);
                 
-                return <Paper className={`card activity ${getActivityColor(activity.due_date)}`} key={index} data-activityid={activity.id} elevation={5}>
+                return <Paper className={`card activity ${getActivityColor(activity.due_date, activity.completed)}`} key={index} data-activityid={activity.id} elevation={5}>
                     <div>
                         {activity.favorite === false ? 
                         <FavoriteBorderIcon data-activityid={activity.id} 
@@ -111,14 +119,14 @@ const DisplayActivities = (props) => {
                         onClick={handleFav}/>}
 
                         {activity.due_date === null ? '' :
-                        <p>{`due: ${activity.due_date}`}</p>}
+                        <p>{`${activity.due_date}`}</p>}
                        
                         <h2 className="card title">{activity.title}</h2>
                         <p className="card body">{activity.body}</p>
-                        <Button className={"btn completed"} data-activityid={activity.id} onClick={handleComplete}>
+                        <Button className={`btn completed ${getActivityColor(activity.due_date, activity.completed)}`} data-activityid={activity.id}  data-completed={activity.completed} onClick={handleComplete}>
                             {activity.completed === true ? "Completed" : "Mark Complete"}
                         </Button>
-                        <Button className={"btn delete"} data-activityid={activity.id} onClick={handleDelete}>Delete</Button>
+                        <Button className={`btn delete ${getActivityColor(activity.due_date, activity.completed)}`} data-activityid={activity.id} onClick={handleDelete}>Delete</Button>
                     </div>
                 </Paper>
             })}
