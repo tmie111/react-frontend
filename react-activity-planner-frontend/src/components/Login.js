@@ -8,14 +8,13 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
 
         let body = {
             username: e.target.username.value,
             password: e.target.password.value
         }
 
-        fetch('http://localhost:3001/login', {
+        fetch('https://activity-planner-backend.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -28,7 +27,6 @@ const Login = (props) => {
             }else{
                 alert(data.error)
             }
-            
         })
     }
 

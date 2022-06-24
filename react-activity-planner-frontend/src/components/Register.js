@@ -17,7 +17,7 @@ const Register = (props) => {
             password: e.target.password.value
         }
 
-        fetch('http://localhost:3001/register', {
+        fetch('https://activity-planner-backend.herokuapp.com/register', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

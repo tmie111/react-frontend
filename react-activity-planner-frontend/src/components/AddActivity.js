@@ -26,14 +26,13 @@ const AddActivity = (props) => {
             due_date: `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`
         }
 
-        fetch('http://localhost:3001/activities', {
+        fetch('https://activity-planner-backend.herokuapp.com/activities', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
-            console.log(data);
             props.setActivities([]);
             e.target.title.value = "";
             e.target.body.value = "";

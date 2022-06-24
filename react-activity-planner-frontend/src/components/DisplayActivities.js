@@ -7,7 +7,7 @@ const DisplayActivities = (props) => {
     const activities = props.activities;
     
     if (activities.length === 0) {
-        fetch(`http://localhost:3001/activities/${props.userID}`)
+        fetch(`https://activity-planner-backend.herokuapp.com/activities/${props.userID}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length !== 0) {
@@ -18,9 +18,7 @@ const DisplayActivities = (props) => {
 
     const handleComplete = (e) => {
 
-        getActivityColor('complete');
-
-        fetch(`http://localhost:3001/activities/${e.currentTarget.getAttribute("data-activityid")}`, {
+        fetch(`https://activity-planner-backend.herokuapp.com/activities/${e.currentTarget.getAttribute("data-activityid")}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +30,6 @@ const DisplayActivities = (props) => {
             return res.json();
         })
             .then(data =>{ 
-                
                 props.setActivities([]);
             })
 
@@ -43,24 +40,19 @@ const DisplayActivities = (props) => {
 
     const handleDelete = (e) => {
 
-        fetch(`http://localhost:3001/activities/${e.target.dataset.activityid}`, {
+        fetch(`https://activity-planner-backend.herokuapp.com/activities/${e.target.dataset.activityid}`, {
             method: 'DELETE',
         }).then(res => {
-            console.log(res.status);
             return res.json();
         })
             .then(data => {
-                // console.log(data)
                 props.setActivities([]);
             })
     }
 
     const handleFav = (e) => {
-        console.log(e.currentTarget.getAttribute("data-activityid"));
-        console.log(e.currentTarget.getAttribute("data-favorite"))
-        console.log(e.currentTarget.getAttribute("data-favorite") === "false")
-       
-        fetch(`http://localhost:3001/favorites/${e.currentTarget.getAttribute("data-activityid")}`, {
+
+        fetch(`https://activity-planner-backend.herokuapp.com/favorites/${e.currentTarget.getAttribute("data-activityid")}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,7 +60,6 @@ const DisplayActivities = (props) => {
                 favorite: e.currentTarget.getAttribute("data-favorite") === "false"
             })
         }).then(res => {
-            console.log(res.status);
             return res.json();
         })
             .then(data =>{ 
@@ -77,7 +68,6 @@ const DisplayActivities = (props) => {
     }
 
     const getActivityColor = (date, completed) => {
-        console.log(date);
 
         if(!date){
             return ""
@@ -91,8 +81,7 @@ const DisplayActivities = (props) => {
         let dueDate = new Date(date)
 
         let difference = Math.ceil((dueDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-        console.log(difference);
-
+      
         if(difference === -0 || difference <= -1){
             return "red"
         }else if(difference < 3){
@@ -106,8 +95,6 @@ const DisplayActivities = (props) => {
         return <div>
             <h1>All Activities: </h1>
             {activities.map((activity, index) => {
-                console.log(activity);
-                
                 return <Paper className={`card activity ${getActivityColor(activity.due_date, activity.completed)}`} key={index} data-activityid={activity.id} elevation={5}>
                     <div>
                         {activity.favorite === false ? 
