@@ -43,12 +43,6 @@ app.get('/activities/:userID', (req, res) => {
     })
 })
 
-// app.get('/dates/:activityID', (req, res) => {
-//     let activityID = parseInt(req.params.activityID);
-
-//     models.Activity
-// })
-
 app.post('/activities', (req, res) => {
     let { user_id, title, body, due_date } = req.body;
 
@@ -111,15 +105,12 @@ app.post('/register', (req, res) => {
     })
 })
 
-
-//mark activity as completed
 app.patch('/activities/:id', (req, res) => {
     let activityID = parseInt(req.params.id);
     let complete = req.body.completed;
 
     models.Activity.update({ completed: complete }, { where: { id: activityID } })
         .then(result => {
-            console.log(result);
             return res.json(result)
         })
 })
@@ -128,12 +119,8 @@ app.patch('/favorites/:id', (req, res) => {
     let activityID = parseInt(req.params.id);
     let favorite = req.body.favorite;
 
-    console.log(activityID);
-    console.log('here');
-
     models.Activity.update({ favorite: favorite }, { where: { id: activityID } })
         .then(result => {
-            console.log(result);
             return res.json(result)
         })
 })
