@@ -17,7 +17,6 @@ import {
 function App() {
 
   const [userID, setUserID] = useState(null);
-  const[date, setDate] = useState('');
 
 
   return (
