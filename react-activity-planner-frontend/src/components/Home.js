@@ -6,21 +6,21 @@ const Home = () => {
         <h1>Activity Planner</h1>
         <h3><em>your new favorite productivity app</em> <br></br>
         register account to:</h3>
-        <div>
+        <div className="home blocks">
             <Paper className="card home" elevation={5}>
-            add tasks seamlessly
+            <h3><em>add tasks seamlessly</em></h3>
             <img src="/addactivity.png" alt="sorted activities" />
            </Paper>
         </div>
         <div>
             <Paper className="card home" elevation={5}>
-            add activities to your favorites
+            <h3><em>add activities to your favorites</em></h3>
             <img src="/favorites.png" alt="favorites" />
            </Paper>
         </div>
         <div>
             <Paper className="card home" elevation={5}>
-            sort tasks by deadlines
+            <h3><em>sort tasks by deadlines</em></h3>
             <img src="/displayactivities.png" alt="sorted activities" />
            </Paper>
         </div>
