@@ -34,14 +34,14 @@ const Login = (props) => {
             <h1>Login Page</h1>
         <Paper className="card login" elevation={5}>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="add activity input">
                     <TextField
                         name="username"
                         id="username-login"
                         label="Username"
                         variant="outlined" />
                 </div>
-                <div>
+                <div className="add activity input">
                     <TextField
                         name="password"
                         type="password"

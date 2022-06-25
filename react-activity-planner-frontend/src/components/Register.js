@@ -35,24 +35,24 @@ const Register = (props) => {
 
     return (
         <div>
-            <h1>Registration Page</h1>
+            <h1>Register Account</h1>
             <Paper className="card register" elevation={5}>
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className="add activity input">
                         <TextField
                             name="username"
                             id="username"
                             label="Username"
                             variant="outlined" />
                     </div>
-                    <div>
+                    <div className="add activity input">
                         <TextField
                             name="email"
                             id="email"
                             label="Email"
                             variant="outlined" />
                     </div>
-                    <div>
+                    <div className="add activity input">
                         <TextField
                             name="password"
                             type="password"

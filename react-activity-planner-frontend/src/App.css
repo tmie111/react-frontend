@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  height: 100%;
   background-color: #e8f4ea;
   font-family: "Lucida Sans Typewriter", monaco, monospace; 
+}
+
+html{
+  background-color: #e8f4ea;
 }
 
 .menu {
