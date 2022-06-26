@@ -87,7 +87,7 @@ const DisplayActivities = (props) => {
         }else if(difference < 3){
             return "yellow"
         }else {
-            return "blue"
+            return ""
         }
     }
 
